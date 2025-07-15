@@ -3,6 +3,7 @@ export const dummyCars: Car[] = [
         {
                 id: 1,
                 brand: 'Toyota',
+                img:"",
                 model: 'Camry',
                 year: 2022,
                 color: 'Silver',
@@ -17,6 +18,7 @@ export const dummyCars: Car[] = [
         {
                 id: 2,
                 brand: 'Honda',
+                img:"",
                 model: 'Civic',
                 year: 2021,
                 color: 'Blue',
@@ -31,6 +33,7 @@ export const dummyCars: Car[] = [
         {
                 id: 3,
                 brand: 'Tesla',
+                img:"",
                 model: 'Model 3',
                 year: 2023,
                 color: 'White',
@@ -45,6 +48,7 @@ export const dummyCars: Car[] = [
         {
                 id: 4,
                 brand: 'Toyota',
+                img:"",
                 model: 'Corolla',
                 year: 2000,
                 color: 'red',

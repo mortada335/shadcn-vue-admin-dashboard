@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen bg-background">
-    <main class="container mx-auto py-6">
+    <main class=" mx-auto py-6">
       <!-- <div class="flex flex-col gap-6"> -->
         <Page />
       <!-- </div> -->

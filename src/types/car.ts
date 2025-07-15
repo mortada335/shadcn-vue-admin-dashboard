@@ -1,5 +1,6 @@
 export interface Car {
         id: number
+        img: string
         brand: string
         model: string
         year: number
@@ -31,6 +32,7 @@ export interface PaginationState {
 } 
 
 export interface CarFormData {
+        img: string
         brand: string
         model:string
         year:number
