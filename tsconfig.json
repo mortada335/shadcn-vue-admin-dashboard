@@ -1,0 +1,36 @@
+{
+  "include": [
+    "./typed-router.d.ts",
+    "./auto-imports.d.ts",
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "./shims-svg.d.ts"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.vitest.json"
+    }
+  ],
+  "compilerOptions": {
+    "module": "NodeNext",
+    "strict": true,
+    "moduleResolution": "Bundler",
+    "baseUrl": ".",
+    "types": [
+      "vite-plugin-vue-layouts/client"
+    ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  }
+}
