@@ -1,26 +1,14 @@
-<!-- <template>
-<div>
-        hi from admins pages
-        <page/>
-</div>
-</template>
-<script setup>
-import Page from "@/views/admins/components/page.vue"
-
-
-</script> -->
-
 <template>
   <div class="container mx-auto p-6 space-y-6">
     <!-- Page Header -->
     <div class="flex justify-between items-center">
       <div>
-        <h1 class="text-3xl font-bold">Admin Management</h1>
-        <p class="text-muted-foreground">Manage your admin users and their permissions</p>
+        <h1 class="text-3xl font-bold">{{t("admin_management")}}</h1>
+        <p class="text-muted-foreground">{{t("manage_your_admin_users_and_their_permissions")}}</p>
       </div>
       <Button @click="openAddDialog">
         <Plus class="w-4 h-4 mr-2" />
-        Add Admin
+        {{t("add_admin")}}
       </Button>
     </div>
 
@@ -73,7 +61,7 @@ import Page from "@/views/admins/components/page.vue"
       <Card class="p-6">
         <div class="flex items-center gap-4">
           <Loader2 class="w-6 h-6 animate-spin" />
-          <span>Processing...</span>
+          <span>{{t("Processing...")}}</span>
         </div>
       </Card>
     </div>
@@ -102,11 +90,12 @@ import DeleteConfirmDialog from '@/views/admins/components/DeleteConfitrmDialog.
 // Store and Types
 import { useAdminStore } from '@/views/admins/store/store'
 import type { Admin, AdminFormData } from '@/types/admins'
+import { useI18n } from 'vue-i18n'
 
 // Initialize
 const adminStore = useAdminStore()
 const { toast } = useToast()
-
+const { t } = useI18n()
 // Dialog states
 const formDialogOpen = ref(false)
 const deleteDialogOpen = ref(false)

@@ -1,7 +1,7 @@
 <template>
   <Card>
     <CardContent class="p-6">
-      <div class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
+      <div class="flex flex-col w-full space-y-4 md:flex-row md:space-y-0 md:space-x-4 gap-2">
         <!-- Search Input -->
         <div class="flex-1">
           <div class="relative">
@@ -9,7 +9,7 @@
             <Input
               :model-value="searchQuery"
               @update:model-value="$emit('search', String($event))"
-              placeholder="Search admins..."
+              :placeholder="t('Search admins...')"
               class="pl-8"
             />
           </div>
@@ -21,12 +21,12 @@
           @update:model-value="updateStatusFilter"
         >
           <SelectTrigger class="w-[180px]">
-            <SelectValue placeholder="Filter by status" />
+            <SelectValue :placeholder="t('Filter by status')" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Status</SelectItem>
-            <SelectItem value="active">Active Only</SelectItem>
-            <SelectItem value="inactive">Inactive Only</SelectItem>
+            <SelectItem value="all">{{t("all_status")}}</SelectItem>
+            <SelectItem value="active">{{t("active_only")}}</SelectItem>
+            <SelectItem value="inactive">{{t("inactive_only")}}</SelectItem>
           </SelectContent>
         </Select>
 
@@ -36,20 +36,20 @@
           @update:model-value="updateRoleFilter"
         >
           <SelectTrigger class="w-[180px]">
-            <SelectValue placeholder="Filter by role" />
+            <SelectValue :placeholder="t('Filter by role')" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Roles</SelectItem>
-            <SelectItem value="admin">Admin</SelectItem>
-            <SelectItem value="super_admin">Super Admin</SelectItem>
-            <SelectItem value="moderator">Moderator</SelectItem>
+            <SelectItem value="all">{{ t("all_admins") }}</SelectItem>
+            <SelectItem value="admin">{{t("admin")}}</SelectItem>
+            <SelectItem value="super_admin">{{t("super_admin")}}</SelectItem>
+            <SelectItem value="moderator">{{t("moderator")}}</SelectItem>
           </SelectContent>
         </Select>
 
         <!-- Export Button -->
-        <Button variant="outline" @click="$emit('export')">
-          <Download class="w-4 h-4 mr-2" />
-          Export
+        <Button variant="outline"  @click="$emit('export')">
+          <Download class="w-8 h-8 mr-2" />
+          {{t("export")}}
         </Button>
       </div>
     </CardContent>
@@ -64,6 +64,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import type { FilterOption } from '@/types/admins'
+import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
   searchQuery: string
@@ -75,6 +76,8 @@ const emit = defineEmits<{
   filter: [filters: FilterOption[]]
   export: []
 }>()
+
+const { t } = useI18n()
 
 const statusFilter = computed(() => {
   const filter = props.filters.find(f => f.key === 'status')

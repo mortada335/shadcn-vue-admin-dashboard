@@ -4,7 +4,7 @@
       <h1 class="text-3xl font-bold">Admin Management</h1>
       <Button @click="openAddDialog">
         <Plus class="w-4 h-4 mr-2" />
-        Add Admin
+        {{t("add_admin")}}
       </Button>
     </div>
 
@@ -183,10 +183,14 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Toaster } from '@/components/ui/toast'
 import { useToast } from '@/components/ui/toast'
-import { useAdminStore, type Admin } from '@/views/admins/store/store'
+import { useAdminStore } from '@/views/admins/store/store'
+import type { Admin } from '@/types/admins'
+import { useI18n } from 'vue-i18n'
+
 const {toast} = useToast()
 // Types
 
+const {t} = useI18n()
 const store= useAdminStore()
 // Store implementation
 class AdminStore {
@@ -278,7 +282,8 @@ const form = reactive<Omit<Admin, 'id' | 'createdAt' | 'updatedAt'>>({
   email: '',
   age: 18,
   isActive: true,
-  avatar: ''
+  avatar: '',
+  role: 'admin'
 })
 
 // Helper functions

@@ -8,7 +8,7 @@
             @update:checked="toggleSelectAll"
           />
           <span class="text-sm font-medium">
-            {{ selectedItems.length }} of {{ admins.length }} selected
+            {{ selectedItems.length + t(" ") +  t("of") +  admins.length + t(" ") +  t("selected") }}
           </span>
         </div>
         <div class="flex items-center gap-2">
@@ -18,7 +18,7 @@
             @click="$emit('bulk-delete', selectedItems)"
           >
             <Trash2 class="w-4 h-4 mr-2" />
-            Delete Selected
+            {{t("delete_selected")}}
           </Button>
         </div>
       </div>
@@ -28,19 +28,19 @@
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead class="w-12">
+            <TableHead class="w-10">
               <Checkbox
                 :checked="isAllSelected"
                 @update:checked="toggleSelectAll"
               />
             </TableHead>
-            <TableHead>Avatar</TableHead>
+            <TableHead>{{t("avatar")}}</TableHead>
             <TableHead 
               class="cursor-pointer hover:bg-muted/50"
               @click="$emit('sort', 'name')"
             >
               <div class="flex items-center gap-1">
-                Name
+                {{t("name")}}
                 <ArrowUpDown class="w-4 h-4" />
               </div>
             </TableHead>
@@ -49,7 +49,7 @@
               @click="$emit('sort', 'email')"
             >
               <div class="flex items-center gap-1">
-                Email
+                {{t("email")}}
                 <ArrowUpDown class="w-4 h-4" />
               </div>
             </TableHead>
@@ -58,22 +58,22 @@
               @click="$emit('sort', 'age')"
             >
               <div class="flex items-center gap-1">
-                Age
+                {{t("age")}}
                 <ArrowUpDown class="w-4 h-4" />
               </div>
             </TableHead>
-            <TableHead>Role</TableHead>
-            <TableHead>Status</TableHead>
+            <TableHead>{{t("role")}}</TableHead>
+            <TableHead>{{ t("status") }}</TableHead>
             <TableHead 
               class="cursor-pointer hover:bg-muted/50"
               @click="$emit('sort', 'createdAt')"
             >
               <div class="flex items-center gap-1">
-                Created
+                {{t("created")}}
                 <ArrowUpDown class="w-4 h-4" />
               </div>
             </TableHead>
-            <TableHead class="text-right">Actions</TableHead>
+            <TableHead class="text-right">{{t("actions")}}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -82,8 +82,8 @@
             :key="admin.id"
             :class="{ 'bg-muted/50': selectedItems.some(item => item.id === admin.id) }"
           >
-            <TableCell>
-              <Checkbox
+            <TableCell class="w-10">
+              <Checkbox class="mr-5"
                 :checked="selectedItems.some(item => item.id === admin.id)"
                 @update:checked="toggleSelectItem(admin)"
               />
@@ -125,8 +125,8 @@
             <TableCell colspan="9" class="text-center py-8 text-muted-foreground">
               <div class="flex flex-col items-center gap-2">
                 <Users class="w-8 h-8 text-muted-foreground/50" />
-                <span>No admins found</span>
-                <span class="text-sm">Add your first admin to get started</span>
+                <span>{{t("no_admins_found")}}</span>
+                <span class="text-sm">{{t("add_your_first_admin_to_get_started")}}</span>
               </div>
             </TableCell>
           </TableRow>
@@ -146,6 +146,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import type { Admin } from '@/types/admins'
+import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
   admins: Admin[]
@@ -158,6 +159,7 @@ const emit = defineEmits<{
   'sort': [column: string]
 }>()
 
+const {t} = useI18n()
 const selectedItems = ref<Admin[]>([])
 
 const isAllSelected = computed(() => 

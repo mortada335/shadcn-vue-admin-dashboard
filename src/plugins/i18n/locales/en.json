@@ -1,0 +1,20 @@
+{
+  "Dashboard": "Dashboard",
+  "Patients": "atients",
+  "Doctors": "Doctors",
+  "Appontments": "Appontments",
+  "Departments": "Deprtments",
+  "Patient ID": "Patient ID",
+  "Medical History": "Medical History",
+  "Blood Type": "Blood Type",
+  "Emergency Contact": "Emergency Contact",
+  
+  "Schedule Appointment": "Schedule Appointment",
+  "Appointment Date": "Appointment Date",
+  "Appointment Time": "Appointment Time",
+  "Appointment Status":"Appointment Status",
+  "Scheduled": "Scheduled",
+  "Completed": "Completed",
+  "Cancelled": "Cancelled",
+  "add_admin":"Add Admin"
+}

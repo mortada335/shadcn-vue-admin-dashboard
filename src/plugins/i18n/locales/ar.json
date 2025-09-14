@@ -1,23 +1,4 @@
 {
-  "Dashboard": "Dashboard",
-  "Patients": "atients",
-  "Doctors": "Doctors",
-  "Appontments": "Appontments",
-  "Departments": "Deprtments",
-
-  
-  "Patient ID": "Patient ID",
-  "Medical History": "Medical History",
-  "Blood Type": "Blood Type",
-  "Emergency Contact": "Emergency Contact",
-  
-  "Schedule Appointment": "Schedule Appointment",
-  "Appointment Date": "Appointment Date",
-  "Appointment Time": "Appointment Time",
-  "Appointment Status":"Appointment Status",
-  "Scheduled": "Scheduled",
-  "Completed": "Completed",
-  "Cancelled": "Cancelled",
   "Add to calendar": "هلا",
   "Login": "تسجيل الدخول",
   "My Account": "حسابي الشخصي",
@@ -100,5 +81,38 @@
   "university": "الجامعة",
   "Title":"اللقب الوظيفي",
   "Employment Type":"نوع الوظيفة",
-  "Are you sure you want to delete student : ": "هل انت متأكد من رغبتك في حذف هذا الطالب"
+  "Are you sure you want to delete student : ": "هل انت متأكد من رغبتك في حذف هذا الطالب",
+  "Admins": "المدراء",
+  "Admin Management": "ادارة المدراء",
+  "add_admin": "اضافة مدير",
+  "avatar": "الصورة",
+  "role": "الدور",
+  "admin": "مدير",
+  "admin-management": "ادارة المدراء",
+  "manage_your_admin_users_and_their_permissions": "ادارة مستخدمي الادارة وصلاحياتهم",
+  "admin_management": "ادارة المدراء",
+  "Processing...":"جاري المعالجة...",
+  "total_admins": "اجمالي المدراء",
+  "from_last_month": "من الشهر الماضي",
+  "active_admins": "المدراء النشطين",
+  "of_total": "من الاجمالي",
+  "inactive_admins": "المدراء غير النشطين",
+  "new_this_month": "الجدد هذا الشهر",
+  "new_admins_added": "مدراء جدد تم اضافتهم",
+  "Search admins...": "ابحث عن مدراء...",
+  "Filter by status": "تصفية حسب الحالة",
+  "all_roles": "كل الادوار",
+  "all_admins": "كل المدراء",
+  "super_admin": "مدير عام",
+  "moderator": "مشرف",
+  "export": "تصدير",
+  "all_status": "كل الحالات",
+  "active_only": "النشطين فقط",
+  "inactive_only": "غير النشطين فقط"
+
+
+
+
+
+
 }
