@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 import { reactive, watch } from 'vue'
 import { Loader2 } from 'lucide-vue-next'
@@ -11,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { useToast } from '@/components/ui/toast'
 import type { Admin, AdminFormData } from '@/types/admins'
+import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
   open: boolean
@@ -24,6 +24,7 @@ const emit = defineEmits<{
 }>()
 
 const { toast } = useToast()
+const { t } = useI18n()
 
 const isEditing = computed(() => !!props.admin)
 
@@ -133,61 +134,61 @@ const handleSubmit = () => {
   <Dialog :open="open" @update:open="$emit('update:open', $event)">
     <DialogContent class="sm:max-w-[500px]">
       <DialogHeader>
-        <DialogTitle>{{ isEditing ? 'Edit Admin' : 'Add New Admin' }}</DialogTitle>
+        <DialogTitle>{{ isEditing ? t("edit_admin") : t("add_new_admin") }}</DialogTitle>
         <DialogDescription>
-          {{ isEditing ? 'Update admin information below.' : 'Fill in the details to create a new admin.' }}
+          {{ isEditing ? t('update_admin_information_below.') : t('fill_in_the_details_to_create_new_admin.') }}
         </DialogDescription>
       </DialogHeader>
 
       <form @submit.prevent="handleSubmit" class="space-y-4">
         <div class="grid gap-4 py-4">
           <div class="grid gap-2">
-            <Label for="name">Name *</Label>
+            <Label for="name">{{t("name")}}<span class="text-red-500 text-xs">*</span></Label>
             <Input
               id="name"
               v-model="form.name"
-              placeholder="Enter admin name"
+              :placeholder="t('enter_admin_name')"
               :disabled="loading"
               required
             />
           </div>
 
           <div class="grid gap-2">
-            <Label for="email">Email *</Label>
+            <Label for="email">{{t("email")}}<span class="text-red-500 text-xs">*</span></Label>
             <Input
               id="email"
               v-model="form.email"
               type="email"
-              placeholder="Enter email address"
+              :placeholder="t('enter_email_address')"
               :disabled="loading"
               required
             />
           </div>
 
           <div class="grid gap-2">
-            <Label for="age">Age *</Label>
+            <Label for="age">{{t("age")}}<span class="text-red-500 text-xs">*</span></Label>
             <Input
               id="age"
               v-model.number="form.age"
               type="number"
               min="18"
               max="100"
-              placeholder="Enter age"
+              :placeholder="t('enter_age')"
               :disabled="loading"
               required
             />
           </div>
 
           <div class="grid gap-2">
-            <Label for="role">Role *</Label>
+            <Label for="role">{{t("role")}} <span class="text-xs text-red-500">*</span></Label>
             <Select v-model="form.role" :disabled="loading">
               <SelectTrigger>
-                <SelectValue placeholder="Select role" />
+                <SelectValue :placeholder="t('select_role')" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="admin">Admin</SelectItem>
-                <SelectItem value="super_admin">Super Admin</SelectItem>
-                <SelectItem value="moderator">Moderator</SelectItem>
+                <SelectItem value="admin">{{t("admin")}}</SelectItem>
+                <SelectItem value="super_admin">{{t("super_Admin")}}</SelectItem>
+                <SelectItem value="moderator">{{ t("moderator") }}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -198,11 +199,11 @@ const handleSubmit = () => {
               v-model:checked="form.isActive"
               :disabled="loading"
             />
-            <Label for="isActive">Active Status</Label>
+            <Label for="isActive">{{t("active_status")}}</Label>
           </div>
 
           <div class="grid gap-2">
-            <Label for="avatar">Avatar</Label>
+            <Label for="avatar">{{ t("avatar") }}</Label>
             <Input
               id="avatar"
               type="file"
@@ -214,7 +215,7 @@ const handleSubmit = () => {
             <div v-if="form.avatar" class="mt-2">
               <Avatar class="h-16 w-16">
                 <AvatarImage :src="form.avatar" alt="Preview" />
-                <AvatarFallback>Preview</AvatarFallback>
+                <AvatarFallback>{{t("preview") }}</AvatarFallback>
               </Avatar>
             </div>
           </div>
@@ -227,11 +228,11 @@ const handleSubmit = () => {
             @click="$emit('update:open', false)"
             :disabled="loading"
           >
-            Cancel
+            {{t("cancel")}}
           </Button>
           <Button type="submit" :disabled="loading">
             <Loader2 v-if="loading" class="w-4 h-4 mr-2 animate-spin" />
-            {{ isEditing ? 'Update Admin' : 'Create Admin' }}
+            {{ isEditing ? t("update_admin") : t("create_admin") }}
           </Button>
         </DialogFooter>
       </form>
