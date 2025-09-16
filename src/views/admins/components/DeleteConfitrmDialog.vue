@@ -4,17 +4,17 @@
       <DialogHeader>
         <DialogTitle class="flex items-center gap-2">
           <AlertTriangle class="h-5 w-5 text-destructive" />
-          {{ isBulkDelete ? 'Delete Multiple Admins' : 'Delete Admin' }}
+          {{ isBulkDelete ? t('delete_multiple_admins') : t("delete_admin") }}
         </DialogTitle>
         <DialogDescription>
           <span v-if="isBulkDelete">
-            Are you sure you want to delete <strong>{{ items?.length }} admins</strong>?
+            {{t('are_you_sure_you_want_to_delete')}} <strong>{{ items?.length }} {{t("admins")}}</strong>?
           </span>
           <span v-else>
-            Are you sure you want to delete <strong>{{ items?.[0]?.name }}</strong>?
+            {{t('are_you_sure_you_want_to_delete')}} <strong>{{ items?.[0]?.name }}</strong>?
           </span>
           <br />
-          <span class="text-destructive font-medium">This action cannot be undone.</span>
+          <span class="text-destructive font-medium">{{t("this_action_cannot_be_undone.")}}</span>
         </DialogDescription>
       </DialogHeader>
 
@@ -41,7 +41,7 @@
           @click="$emit('update:open', false)"
           :disabled="loading"
         >
-          Cancel
+          {{t("cancel")}}
         </Button>
         <Button 
           variant="destructive" 
@@ -49,7 +49,7 @@
           :disabled="loading"
         >
           <Loader2 v-if="loading" class="w-4 h-4 mr-2 animate-spin" />
-          {{ isBulkDelete ? `Delete ${items?.length} Admins` : 'Delete Admin' }}
+          {{ isBulkDelete ? `${t("delete")} ${items?.length} ${t("Admins")}` : t('delete_admin') }}
         </Button>
       </DialogFooter>
     </DialogContent>
@@ -63,6 +63,10 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import type { Admin } from '@/types/admins'
+import { useI18n } from 'vue-i18n'
+
+
+const {t} = useI18n()
 
 const props = defineProps<{
   open: boolean
