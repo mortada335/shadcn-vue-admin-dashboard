@@ -3,12 +3,12 @@
     <!-- Header -->
     <div class="flex items-center justify-between mb-8">
       <div>
-        <h1 class="text-4xl font-bold">Branches Management</h1>
-        <p class="text-muted-foreground mt-2">Manage your organization's branches and locations</p>
+        <h1 class="text-4xl font-bold">{{t("Branches Management")}}</h1>
+        <p class="text-muted-foreground mt-2">{{t("Manage your organization's branches and locations")}}</p>
       </div>
       <Button @click="openCreateDialog">
         <Plus class="h-4 w-4 mr-2" />
-        Add Branch
+        {{t("Add Branch")}}
       </Button>
     </div>
 
@@ -26,9 +26,9 @@
           <SelectValue placeholder="Filter by Status" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="all">All Status</SelectItem>
-          <SelectItem value="active">Active</SelectItem>
-          <SelectItem value="inactive">Inactive</SelectItem>
+          <SelectItem value="all">{{t("All Status")}}</SelectItem>
+          <SelectItem value="active">{{t("Active")}}</SelectItem>
+          <SelectItem value="inactive">{{t("Inactive")}}</SelectItem>
         </SelectContent>
       </Select>
     </div>
@@ -38,12 +38,12 @@
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Name</TableHead>
-            <TableHead>Location</TableHead>
-            <TableHead>Phone Number</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Created</TableHead>
-            <TableHead class="text-right">Actions</TableHead>
+            <TableHead>{{t("Name")}}</TableHead>
+            <TableHead>{{t("Location")}}</TableHead>
+            <TableHead>{{t("Phone Number")}}</TableHead>
+            <TableHead>{{t("Status")}}</TableHead>
+            <TableHead>{{t("Created")}}</TableHead>
+            <TableHead class="text-right">{{t("Actions")}}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -53,7 +53,7 @@
             <TableCell>{{ branch.phoneNumber }}</TableCell>
             <TableCell>
               <Badge :variant="branch.status === 'active' ? 'default' : 'secondary'">
-                {{ branch.status }}
+                {{ t(branch.status )}}
               </Badge>
             </TableCell>
             <TableCell>{{ formatDate(branch.createdAt) }}</TableCell>
@@ -71,7 +71,7 @@
           <TableRow v-if="paginatedBranches.length === 0">
             <TableCell colspan="6" class="text-center py-8">
               <div class="text-muted-foreground">
-                No branches found. Try adjusting your filters or create a new branch.
+                {{t("No branches found. Try adjusting your filters or create a new branch.")}}
               </div>
             </TableCell>
           </TableRow>
@@ -82,13 +82,13 @@
     <!-- Pagination -->
     <div class="flex items-center justify-between mt-6">
       <div class="text-sm text-muted-foreground">
-        Showing {{ startIndex + 1 }} to {{ Math.min(endIndex, filteredBranches.length) }} of
+        {{t("Showing")}} {{ startIndex + 1 }} to {{ Math.min(endIndex, filteredBranches.length) }} of
         {{ filteredBranches.length }} branches
       </div>
       <div class="flex items-center space-x-6 lg:space-x-8">
         <div class="flex items-center space-x-2">
           <p class="text-sm font-medium">Rows per page</p>
-          <Select v-model="pageSize" @update:model-value="handlePageSizeChange">
+          <Select v-model:model-value="String(pageSize)" @update:model-value="handlePageSizeChange">
             <SelectTrigger class="h-8 w-[70px]">
               <SelectValue />
             </SelectTrigger>
@@ -202,7 +202,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
-import { useBranchStore } from '@/views/branches/store/index'
+import { useBranchStore } from '@/views/branches/store'
 import { useToast } from '@/components/ui/toast/use-toast'
 
 // shadcn-vue components
@@ -255,11 +255,11 @@ import {
   ChevronRight,
   Loader2,
 } from 'lucide-vue-next'
-
+import { useI18n} from "vue-i18n"
 // Store and composables
 const branchStore = useBranchStore()
 const { toast } = useToast()
-
+const {t} = useI18n()
 // Store state
 const {
   branches,
