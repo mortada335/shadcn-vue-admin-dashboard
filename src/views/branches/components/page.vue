@@ -88,15 +88,15 @@
       <div class="flex items-center space-x-6 lg:space-x-8">
         <div class="flex items-center space-x-2">
           <p class="text-sm font-medium">Rows per page</p>
-          <Select v-model:model-value="String(pageSize)" @update:model-value="handlePageSizeChange">
+          <Select v-model="pageSize" @update:model-value="handlePageSizeChange">
             <SelectTrigger class="h-8 w-[70px]">
-              <SelectValue />
+              <SelectValue :placeholder="pageSize" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="5">5</SelectItem>
-              <SelectItem value="10">10</SelectItem>
-              <SelectItem value="20">20</SelectItem>
-              <SelectItem value="50">50</SelectItem>
+              <SelectItem :value="5">5</SelectItem>
+              <SelectItem :value="10">10</SelectItem>
+              <SelectItem :value="20">20</SelectItem>
+              <SelectItem :value="50">50</SelectItem>
             </SelectContent>
           </Select>
         </div>
